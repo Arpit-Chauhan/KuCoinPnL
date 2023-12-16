@@ -25,16 +25,14 @@ class NetworkInfo implements NetworkInfoI {
     _connectivity = this.connectivity;
     initialConnectionCheck();
 
-    connectivitySubscription =
-        _connectivity.onConnectivityChanged.listen((event) {
+    connectivitySubscription = _connectivity.onConnectivityChanged.listen((event) {
       connectStatus.value = event;
 
       if (connectStatus.value == ConnectivityResult.mobile ||
           connectStatus.value == ConnectivityResult.wifi ||
           connectStatus.value == ConnectivityResult.ethernet) {
         disableScreen.value = false;
-      } else if (connectStatus.value == ConnectivityResult.none ||
-          connectStatus.value == ConnectivityResult.bluetooth) {
+      } else if (connectStatus.value == ConnectivityResult.none || connectStatus.value == ConnectivityResult.bluetooth) {
         disableScreen.value = true;
       } else {
         disableScreen.value = true;
@@ -49,8 +47,7 @@ class NetworkInfo implements NetworkInfoI {
         connectStatus.value == ConnectivityResult.wifi ||
         connectStatus.value == ConnectivityResult.ethernet) {
       disableScreen.value = false;
-    } else if (connectStatus.value == ConnectivityResult.none ||
-        connectStatus.value == ConnectivityResult.bluetooth) {
+    } else if (connectStatus.value == ConnectivityResult.none || connectStatus.value == ConnectivityResult.bluetooth) {
       disableScreen.value = true;
     } else {
       disableScreen.value = true;
@@ -77,6 +74,5 @@ class NetworkInfo implements NetworkInfoI {
 
   //check the type on internet connection on changed of internet connection
   @override
-  Stream<ConnectivityResult> get onConnectivityChanged =>
-      connectivity.onConnectivityChanged;
+  Stream<ConnectivityResult> get onConnectivityChanged => connectivity.onConnectivityChanged;
 }

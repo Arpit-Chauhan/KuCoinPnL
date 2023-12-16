@@ -1,38 +1,28 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mvp_draft_4/core/app_export.dart';
+
+import '../utils/colorConstants.dart';
 
 class AppDecoration {
   static BoxDecoration get outlineGray30005 => BoxDecoration(
         color: LightTheme.gray100,
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            0.2,
-          ),
+          width: 0.2,
         ),
       );
   static BoxDecoration get outlineGray3004 => BoxDecoration(
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
         boxShadow: [
           BoxShadow(
             color: LightTheme.bluegray9001e,
-            spreadRadius: getHorizontalSize(
-              2.00,
-            ),
-            blurRadius: getHorizontalSize(
-              2.00,
-            ),
-            offset: Offset(
-              0,
-              4,
-            ),
+            spreadRadius: 2.00,
+            blurRadius: 2.00,
+            offset: Offset(0, 4),
           ),
         ],
       );
@@ -41,9 +31,7 @@ class AppDecoration {
         color: LightTheme.gray100,
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
@@ -51,9 +39,7 @@ class AppDecoration {
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
@@ -61,18 +47,14 @@ class AppDecoration {
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray200,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
   static BoxDecoration get outlineGray3003 => BoxDecoration(
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
@@ -88,11 +70,7 @@ class AppDecoration {
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray300,
-          width: kIsWeb
-              ? 1
-              : getHorizontalSize(
-                  1.00,
-                ),
+          width: kIsWeb ? 1 : 1.00,
         ),
       );
 
@@ -100,9 +78,7 @@ class AppDecoration {
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray100,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
@@ -150,9 +126,7 @@ class AppDecoration {
   static BoxDecoration get textstylesoraregular1411 => BoxDecoration(
         color: LightTheme.gray100,
         borderRadius: BorderRadius.circular(
-          getHorizontalSize(
-            12.00,
-          ),
+          12.00,
         ),
       );
 
@@ -160,11 +134,7 @@ class AppDecoration {
         color: LightTheme.indigo50,
         border: Border.all(
           color: LightTheme.deepPurpleA100,
-          width: kIsWeb
-              ? 1
-              : getHorizontalSize(
-                  1.00,
-                ),
+          width: kIsWeb ? 1 : 1.00,
         ),
       );
 
@@ -172,11 +142,7 @@ class AppDecoration {
         color: LightTheme.lightYellow50,
         border: Border.all(
           color: LightTheme.deepOrangeA100,
-          width: kIsWeb
-              ? 1
-              : getHorizontalSize(
-                  1.00,
-                ),
+          width: kIsWeb ? 1 : 1.00,
         ),
       );
 
@@ -185,12 +151,8 @@ class AppDecoration {
         boxShadow: [
           BoxShadow(
             color: LightTheme.bluegray9001e,
-            spreadRadius: getHorizontalSize(
-              2.00,
-            ),
-            blurRadius: getHorizontalSize(
-              2.00,
-            ),
+            spreadRadius: 2.00,
+            blurRadius: 2.00,
             offset: Offset(
               0,
               -2,
@@ -203,9 +165,7 @@ class AppDecoration {
         color: LightTheme.gray101,
         border: Border.all(
           color: LightTheme.green400,
-          width: getHorizontalSize(
-            2.00,
-          ),
+          width: 2.00,
         ),
       );
 
@@ -230,11 +190,7 @@ class AppDecoration {
         color: LightTheme.gray101,
         border: Border.all(
           color: LightTheme.gray300,
-          width: kIsWeb
-              ? 1
-              : getHorizontalSize(
-                  1.00,
-                ),
+          width: kIsWeb ? 1 : 1.00,
         ),
       );
 
@@ -242,9 +198,7 @@ class AppDecoration {
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
@@ -264,9 +218,7 @@ class AppDecoration {
         color: LightTheme.gray101,
         border: Border.all(
           color: LightTheme.deepPurpleA100,
-          width: getHorizontalSize(
-            1.00,
-          ),
+          width: 1.00,
         ),
       );
 
@@ -299,11 +251,7 @@ class AppDecoration {
         color: LightTheme.whiteA700,
         border: Border.all(
           color: LightTheme.gray300,
-          width: kIsWeb
-              ? 1
-              : getHorizontalSize(
-                  1.00,
-                ),
+          width: kIsWeb ? 1 : 1.00,
         ),
       );
 
@@ -421,249 +369,171 @@ class AppDecoration {
         ),
       );
 
-  static BoxDecoration get purpleRounded4 => BoxDecoration(
-      color: LightTheme.deepPurple400, borderRadius: BorderRadius.circular(4));
+  static BoxDecoration get purpleRounded4 => BoxDecoration(color: LightTheme.deepPurple400, borderRadius: BorderRadius.circular(4));
 
-  static BoxDecoration get tableWithShadow =>
-      BoxDecoration(color: LightTheme.whiteA700, boxShadow: [
-        BoxShadow(
-            offset: Offset(0, 4),
-            blurRadius: 16,
-            spreadRadius: -8,
-            color: Color.fromARGB(30, 45, 43, 64))
-      ]);
+  static BoxDecoration get tableWithShadow => BoxDecoration(
+      color: LightTheme.whiteA700,
+      boxShadow: [BoxShadow(offset: Offset(0, 4), blurRadius: 16, spreadRadius: -8, color: Color.fromARGB(30, 45, 43, 64))]);
 }
 
 class BorderRadiusStyle {
   static BorderRadius roundedBorder2 = BorderRadius.circular(
-    getHorizontalSize(
-      2.00,
-    ),
+    2.00,
   );
   static BorderRadius txtCircleBorder18 = BorderRadius.circular(
-    getHorizontalSize(
-      18.00,
-    ),
+    18.00,
   );
   static BorderRadius roundedBorder6 = BorderRadius.circular(
-    getHorizontalSize(
-      6.00,
-    ),
+    6.00,
   );
 
   static BorderRadius roundedBorder3 = BorderRadius.circular(
-    getHorizontalSize(
-      3.00,
-    ),
+    3.00,
   );
 
   static BorderRadius roundedBorder16 = BorderRadius.circular(
-    getHorizontalSize(
-      16.00,
-    ),
+    16.00,
   );
 
   static BorderRadius roundedBorder8 = BorderRadius.circular(
-    getFontSize(
-      8.00,
-    ),
+    8.00,
   );
 
   static BorderRadius roundedBorder12 = BorderRadius.circular(
-    getHorizontalSize(
-      12.00,
-    ),
+    12.00,
   );
 
   static BorderRadius roundedBorder12Unscaled = BorderRadius.circular(12);
 
   static BorderRadius roundedBorder24 = BorderRadius.circular(
-    getHorizontalSize(
-      24.00,
-    ),
+    24.00,
   );
 
   static BorderRadius customBorderTL24 = BorderRadius.only(
     topLeft: Radius.circular(
-      getHorizontalSize(
-        24.00,
-      ),
+      24.00,
     ),
     topRight: Radius.circular(
-      getHorizontalSize(
-        24.00,
-      ),
+      24.00,
     ),
   );
 
   static BorderRadius customBorderBL16 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
   );
 
   static BorderRadius customBorderBL6 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        6.00,
-      ),
+      6.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        6.00,
-      ),
+      6.00,
     ),
   );
 
   static BorderRadius customBorderT16 = BorderRadius.only(
     topLeft: Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
     topRight: Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
   );
   static BorderRadius customBorderB16 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
   );
 
   static BorderRadius customBorderTB16 = BorderRadius.all(
     Radius.circular(
-      getHorizontalSize(
-        16.00,
-      ),
+      16.00,
     ),
   );
 
   static BorderRadius customBorderBL12 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        12.00,
-      ),
+      12.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        12.00,
-      ),
+      12.00,
     ),
   );
 
   static BorderRadius customBorderTH12 = BorderRadius.only(
     topLeft: Radius.circular(
-      getHorizontalSize(
-        12.00,
-      ),
+      12.00,
     ),
     topRight: Radius.circular(
-      getHorizontalSize(
-        12.00,
-      ),
+      12.00,
     ),
   );
 
   static BorderRadius customBorderBL8 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        8.00,
-      ),
+      8.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        8.00,
-      ),
+      8.00,
     ),
   );
 
   static BorderRadius customBorderTH8 = BorderRadius.only(
     topLeft: Radius.circular(
-      getHorizontalSize(
-        8.00,
-      ),
+      8.00,
     ),
     topRight: Radius.circular(
-      getHorizontalSize(
-        8.00,
-      ),
+      8.00,
     ),
   );
 
   static BorderRadius roundBorderRight6 = BorderRadius.only(
     topRight: Radius.circular(
-      getHorizontalSize(
-        6.00,
-      ),
+      6.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        6.00,
-      ),
+      6.00,
     ),
   );
 
   static BorderRadius roundBorderLeft6 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        6.00,
-      ),
+      6.00,
     ),
     topLeft: Radius.circular(
-      getHorizontalSize(
-        6.00,
-      ),
+      6.00,
     ),
   );
 
   static BorderRadius circleBorder20 = BorderRadius.circular(
-    getHorizontalSize(
-      20.00,
-    ),
+    20.00,
   );
 
   //wallet decoration
 
   static BorderRadius customBottomBorder = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        24.00,
-      ),
+      24.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        24.00,
-      ),
+      24.00,
     ),
   );
 
   static BorderRadius customBorderB4 = BorderRadius.only(
     bottomLeft: Radius.circular(
-      getHorizontalSize(
-        4.00,
-      ),
+      4.00,
     ),
     bottomRight: Radius.circular(
-      getHorizontalSize(
-        4.00,
-      ),
+      4.00,
     ),
   );
 
@@ -671,9 +541,7 @@ class BorderRadiusStyle {
         color: LightTheme.gray100,
         border: Border.all(
           color: LightTheme.gray300,
-          width: getHorizontalSize(
-            0.2,
-          ),
+          width: 0.2,
         ),
       );
 }
@@ -699,8 +567,7 @@ class TabIndicatorPainter extends BoxPainter {
   void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
     canvas.drawRRect(
       RRect.fromRectAndCorners(
-        Rect.fromLTRB(offset.dx + 16, kToolbarHeight - 10,
-            offset.dx + cfg.size!.width - 14, kToolbarHeight - 13),
+        Rect.fromLTRB(offset.dx + 16, kToolbarHeight - 10, offset.dx + cfg.size!.width - 14, kToolbarHeight - 13),
         topLeft: const Radius.circular(5.0),
         topRight: const Radius.circular(5.0),
       ),

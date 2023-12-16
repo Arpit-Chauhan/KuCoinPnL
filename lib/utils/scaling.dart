@@ -29,26 +29,13 @@ class Scaling {
     fh = currentDeviceSize.height;
     fw = currentDeviceSize.width;
 
-    if (!kIsWeb &&
-        (currentDeviceSize.height / currentDeviceSize.width) !=
-            (figmaPhonePort.height / figmaPhonePort.width)) {
-      currentDeviceSize = Size(
-          currentDeviceSize.width,
-          (figmaPhonePort.height /
-              figmaPhonePort.width *
-              currentDeviceSize.width));
+    if (!kIsWeb && (currentDeviceSize.height / currentDeviceSize.width) != (figmaPhonePort.height / figmaPhonePort.width)) {
+      currentDeviceSize = Size(currentDeviceSize.width, (figmaPhonePort.height / figmaPhonePort.width * currentDeviceSize.width));
     }
     devicePixelRatio = MediaQuery.of(context).devicePixelRatio;
   }
 
-  EdgeInsetsGeometry getPadding(
-      {double? all,
-      double? left,
-      double? top,
-      double? right,
-      double? bottom,
-      double? horizontal,
-      double? vertical}) {
+  EdgeInsetsGeometry getPadding({double? all, double? left, double? top, double? right, double? bottom, double? horizontal, double? vertical}) {
     if (all != null) {
       left = all;
       top = all;
@@ -76,14 +63,7 @@ class Scaling {
     );
   }
 
-  EdgeInsetsGeometry getMargin(
-      {double? all,
-      double? left,
-      double? top,
-      double? right,
-      double? bottom,
-      double? horizontal,
-      double? vertical}) {
+  EdgeInsetsGeometry getMargin({double? all, double? left, double? top, double? right, double? bottom, double? horizontal, double? vertical}) {
     if (all != null) {
       left = all;
       top = all;
@@ -113,17 +93,12 @@ class Scaling {
 
   double get fullWidth => currentDeviceSize.width;
   double get fullHeight => currentDeviceSize.height;
-  double get heightRatio => !kIsWeb
-      ? currentDeviceSize.height / (figmaPhonePort.height)
-      : fh / (desktopViewPort.height);
-  double get widthRatio => !kIsWeb
-      ? currentDeviceSize.width / (figmaPhonePort.width)
-      : fw / (desktopViewPort.width);
+  double get heightRatio => !kIsWeb ? currentDeviceSize.height / (figmaPhonePort.height) : fh / (desktopViewPort.height);
+  double get widthRatio => !kIsWeb ? currentDeviceSize.width / (figmaPhonePort.width) : fw / (desktopViewPort.width);
 
   double get fontRatio => min(this.widthRatio, this.heightRatio);
 
-  double getScaledHeight(num value) =>
-      (this.heightRatio * value).ceilToDouble();
+  double getScaledHeight(num value) => (this.heightRatio * value).ceilToDouble();
 
   double getScaledWidth(num value) => (this.widthRatio * value).ceilToDouble();
 

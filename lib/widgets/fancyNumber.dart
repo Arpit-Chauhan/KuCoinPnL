@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:mvp_draft_4/core/app_export.dart';
 
 class FancyText extends StatelessWidget {
   FancyText({
@@ -46,9 +45,7 @@ class FancyText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int integer = number.toInt();
-    String ltpFractions = mfpNAV == true
-        ? number.toStringAsFixed(3).split('.')[1]
-        : number.toStringAsFixed(2).split('.')[1];
+    String ltpFractions = mfpNAV == true ? number.toStringAsFixed(3).split('.')[1] : number.toStringAsFixed(2).split('.')[1];
     if (number.isNegative && integer == 0) {
       if (negativePrefix != null) {
         negativePrefix = '${negativePrefix!}-';
@@ -62,56 +59,39 @@ class FancyText extends StatelessWidget {
         children: [
           if (showRupeeIcon)
             TextSpan(
-                text: "lbl_rupee".tr,
+                text: "₹".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer),
             style: positiveChange
-                ? positiveIntegerStyle
-                    .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                : negativeIntegerStyle
-                    .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );
   }
 }
+
 class FancyTextTxn extends StatelessWidget {
   FancyTextTxn({
     required this.number,
@@ -153,9 +133,7 @@ class FancyTextTxn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int integer = number.toInt();
-    String ltpFractions = mfpNAV == true
-        ? number.toStringAsFixed(3).split('.')[1]
-        : number.toStringAsFixed(2).split('.')[1];
+    String ltpFractions = mfpNAV == true ? number.toStringAsFixed(3).split('.')[1] : number.toStringAsFixed(2).split('.')[1];
     if (number.isNegative && integer == 0) {
       if (negativePrefix != null) {
         negativePrefix = '${negativePrefix!}-';
@@ -171,31 +149,20 @@ class FancyTextTxn extends StatelessWidget {
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer),
             style: positiveChange
-                ? positiveIntegerStyle
-                    .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                : negativeIntegerStyle
-                    .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
-
         ],
       )),
     );
@@ -255,45 +222,31 @@ class FancyTextFno extends StatelessWidget {
             TextSpan(
                 text: "lbl_rupee".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer),
-            style: positiveChange ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]) : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer),
+            style: positiveChange
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );
@@ -353,45 +306,31 @@ class FancyTextCorporate extends StatelessWidget {
             TextSpan(
                 text: "lbl_rupee".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer),
-            style: positiveChange ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]) : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer),
+            style: positiveChange
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );
@@ -451,17 +390,11 @@ class HoldingsFancyText extends StatelessWidget {
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange ? "" : "-",
@@ -471,29 +404,21 @@ class HoldingsFancyText extends StatelessWidget {
             TextSpan(
                 text: "lbl_rupee".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(-integer),
-            style: positiveChange ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]) : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(-integer),
+            style: positiveChange
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );
@@ -557,45 +482,31 @@ class FnoFancyText extends StatelessWidget {
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           if (showRupeeIcon)
             TextSpan(
                 text: "lbl_rupee".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(-integer),
-            style: positiveChange ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]) : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(-integer),
+            style: positiveChange
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );
@@ -650,45 +561,31 @@ class NewTextFancy extends StatelessWidget {
             TextSpan(
                 text: "lbl_rupee".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer),
-            style: positiveChange ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]) : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer),
+            style: positiveChange
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );
@@ -696,24 +593,23 @@ class NewTextFancy extends StatelessWidget {
 }
 
 class FancyTextMFP extends StatelessWidget {
-  FancyTextMFP({
-    required this.number,
-    required this.positiveChange,
-    this.positivePrefix = "",
-    this.positiveSuffix = "",
-    this.negativePrefix = "",
-    this.negativeSuffix = "",
-    this.showRupeeIcon = false,
-    required this.positiveIntegerStyle,
-    required this.positiveDecimalStyle,
-    required this.negativeIntegerStyle,
-    required this.negativeDecimalStyle,
-    this.rsSignSize = 14,
-    this.customAppStyle = false,
-    this.numberFormat,
-    this.isPer,
-    this.shouldPrefixSuffixForZero = false
-  });
+  FancyTextMFP(
+      {required this.number,
+      required this.positiveChange,
+      this.positivePrefix = "",
+      this.positiveSuffix = "",
+      this.negativePrefix = "",
+      this.negativeSuffix = "",
+      this.showRupeeIcon = false,
+      required this.positiveIntegerStyle,
+      required this.positiveDecimalStyle,
+      required this.negativeIntegerStyle,
+      required this.negativeDecimalStyle,
+      this.rsSignSize = 14,
+      this.customAppStyle = false,
+      this.numberFormat,
+      this.isPer,
+      this.shouldPrefixSuffixForZero = false});
 
   /// Should use prefix and suffix for zero as well
   late bool shouldPrefixSuffixForZero;
@@ -749,10 +645,7 @@ class FancyTextMFP extends StatelessWidget {
     }
 
     int integer = number.toInt();
-    String ltpFractions =
-        (isPer == true && formattedNumber.split('.').length == 2)
-            ? formattedNumber.split('.')[1]
-            : '00';
+    String ltpFractions = (isPer == true && formattedNumber.split('.').length == 2) ? formattedNumber.split('.')[1] : '00';
     if ((number.isNegative && integer == 0) && !shouldPrefixSuffixForZero) {
       if (negativePrefix != null) {
         negativePrefix = '${negativePrefix!}-';
@@ -793,7 +686,7 @@ class FancyTextMFP extends StatelessWidget {
               ),
             if (showRupeeIcon)
               TextSpan(
-                text: "lbl_rupee".tr,
+                text: "₹".tr,
                 style: positiveChange
                     ? positiveIntegerStyle.copyWith(
                         fontFamily: 'Manrope',
@@ -806,12 +699,9 @@ class FancyTextMFP extends StatelessWidget {
               ),
             TextSpan(
               text: positiveChange
-                  ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                      .format(integer)
-                  : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                      .format(-integer),
-              style:
-                  positiveChange ? positiveIntegerStyle : negativeIntegerStyle,
+                  ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                  : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(-integer),
+              style: positiveChange ? positiveIntegerStyle : negativeIntegerStyle,
             ),
             TextSpan(
               text: positiveChange
@@ -822,10 +712,8 @@ class FancyTextMFP extends StatelessWidget {
                       ? ".${ltpFractions.substring(0, 1)}${negativeSuffix!}"
                       : "",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
             ),
           ],
         ),
@@ -882,17 +770,11 @@ class BORFancyText extends StatelessWidget {
             text: positiveChange ? positivePrefix! : negativePrefix!,
             style: customAppStyle == true
                 ? positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
-                    : negativeIntegerStyle.copyWith(
-                        fontFeatures: [FontFeature.tabularFigures()],
-                        fontSize: 17.0)
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()], fontSize: 17.0)
                 : positiveChange
-                    ? positiveIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle
-                        .copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                    ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
             text: positiveChange ? "" : "-",
@@ -902,29 +784,21 @@ class BORFancyText extends StatelessWidget {
             TextSpan(
                 text: "lbl_rupee".tr,
                 style: positiveChange
-                    ? positiveIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])
-                    : negativeIntegerStyle.copyWith(
-                        fontFamily: 'Manrope',
-                        fontFeatures: [FontFeature.tabularFigures()])),
+                    ? positiveIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])
+                    : negativeIntegerStyle.copyWith(fontFamily: 'Manrope', fontFeatures: [FontFeature.tabularFigures()])),
           TextSpan(
             text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi'))
-                    .format(-integer),
-            style: positiveChange ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]) : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
+                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
+                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(-integer),
+            style: positiveChange
+                ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-              text: positiveChange
-                  ? ".$ltpFractions${positiveSuffix!}"
-                  : ".$ltpFractions${negativeSuffix!}",
+              text: positiveChange ? ".$ltpFractions${positiveSuffix!}" : ".$ltpFractions${negativeSuffix!}",
               style: positiveChange
-                  ? positiveDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])
-                  : negativeDecimalStyle
-                      .copyWith(fontFeatures: [FontFeature.tabularFigures()])),
+                  ? positiveDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
+                  : negativeDecimalStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])),
         ],
       )),
     );

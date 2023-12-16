@@ -30,12 +30,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  themed: ^5.0.0
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  themed: ^5.0.0
+  get: ^4.6.6
+  connectivity_plus: ^5.0.2
+  intl: ^0.19.0
+  shimmer: ^3.0.0
+  web_socket_channel: ^2.4.0
+  http: ^1.1.2
+  flutter_dotenv: ^5.1.0
 
 dev_dependencies:
   flutter_test:
