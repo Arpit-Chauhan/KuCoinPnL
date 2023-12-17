@@ -36,22 +36,6 @@ class PortfolioScreen extends GetView<PortfolioController> {
                         pageHeader(),
                         SizedBox(height: scale.getScaledHeight(8)),
                         holdingsTab(context),
-                        // Expanded(
-                        //   child: DefaultTabController(
-                        //     length: 3,
-                        //     initialIndex: controller.tabIndex.value,
-                        //     child: Column(
-                        //       children: <Widget>[
-                        //         Container(
-                        //           margin: scale.getMargin(top: 0),
-                        //           height: kToolbarHeight - 9,
-                        //           decoration:
-                        //               BoxDecoration(border: Border(bottom: BorderSide(width: scale.getScaledWidth(1), color: LightTheme.gray300))),
-                        //         ),
-                        //       ],
-                        //     ),
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -456,7 +440,7 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             CircleAvatar(
-                                              backgroundImage: NetworkImage('YOUR_IMAGE_URL_HERE'),
+                                              backgroundImage: NetworkImage(''),
                                               radius: 18, // Adjust the size as needed
                                             ),
                                             SizedBox(width: 15),
@@ -515,31 +499,25 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                                 'Invested: ',
                                                 style: AppStyle.txtSoraRegular12.copyWith(color: LightTheme.gray600),
                                               ),
-                                              FancyTextMFP(
-                                                number: double.parse(controller.investedCoins[index].invested),
-                                                positiveChange: true,
-                                                positiveIntegerStyle: AppStyle.txtSoraSemiBold12Bluegray900,
-                                                positiveDecimalStyle: AppStyle.txtSoraSemiBold12Bluegray900,
-                                                negativeIntegerStyle: AppStyle.txtSoraSemiBold14Bluegray900,
-                                                negativeDecimalStyle: AppStyle.txtSoraSemiBold12Bluegray900,
-                                                showRupeeIcon: true,
+                                              Text(
+                                                '₹${double.parse(controller.investedCoins[index].invested).toStringAsFixed(2)}',
+                                                style: AppStyle.txtSoraSemiBold14Bluegray900,
+                                                overflow: TextOverflow.ellipsis,
                                               ),
                                             ])),
                                             Container(
-                                                child: Row(children: [
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
                                               Text(
                                                 'Current: ',
                                                 style: AppStyle.txtSoraRegular12.copyWith(color: LightTheme.gray600),
                                               ),
-                                              FancyTextMFP(
-                                                number: double.parse(controller.investedCoins[index].current),
-                                                positiveChange: true,
-                                                positiveIntegerStyle: AppStyle.txtSoraSemiBold12Bluegray900,
-                                                positiveDecimalStyle: AppStyle.txtSoraSemiBold12Bluegray900,
-                                                negativeIntegerStyle: AppStyle.txtSoraSemiBold14Bluegray900,
-                                                negativeDecimalStyle: AppStyle.txtSoraSemiBold12Bluegray900,
-                                                showRupeeIcon: true,
-                                              ),
+                                              Obx(()=>Text(
+                                                '₹${controller.investedCoins[index].current.value}',
+                                                style: AppStyle.txtSoraSemiBold14Bluegray900,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),),
                                             ])),
                                           ],
                                         ),
@@ -565,25 +543,25 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  FancyTextMFP(
-                                                    number: double.parse(controller.investedCoins[index].current)-double.parse(controller.investedCoins[index].invested),
+                                                  Obx(()=>FancyTextMFP(
+                                                    number: double.parse(controller.investedCoins[index].pnl.value),
                                                     positivePrefix: "+",
                                                     negativePrefix: "",
-                                                    positiveChange: double.parse(controller.investedCoins[index].current)-double.parse(controller.investedCoins[index].invested) >= 0,
-                                                    positiveIntegerStyle: double.parse(controller.investedCoins[index].current)-double.parse(controller.investedCoins[index].invested) == 0
+                                                    positiveChange: double.parse(controller.investedCoins[index].pnl.value)>= 0,
+                                                    positiveIntegerStyle: double.parse(controller.investedCoins[index].pnl.value) == 0
                                                         ? AppStyle.txtSoraSemiBold14BlueGray900
                                                         : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.green700),
-                                                    positiveDecimalStyle: double.parse(controller.investedCoins[index].current)-double.parse(controller.investedCoins[index].invested) == 0
+                                                    positiveDecimalStyle: double.parse(controller.investedCoins[index].pnl.value)== 0
                                                         ? AppStyle.txtSoraSemiBold12Bluegray900
                                                         : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.green700),
-                                                    negativeIntegerStyle: double.parse(controller.investedCoins[index].current)-double.parse(controller.investedCoins[index].invested) == 0
+                                                    negativeIntegerStyle: double.parse(controller.investedCoins[index].pnl.value)== 0
                                                         ? AppStyle.txtSoraSemiBold14BlueGray900
                                                         : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.red700),
-                                                    negativeDecimalStyle: double.parse(controller.investedCoins[index].current)-double.parse(controller.investedCoins[index].invested) == 0
+                                                    negativeDecimalStyle: double.parse(controller.investedCoins[index].pnl.value)== 0
                                                         ? AppStyle.txtSoraSemiBold12Bluegray900
                                                         : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.red700),
                                                     showRupeeIcon: true,
-                                                  ),
+                                                  ),),
                                                 ],
                                               ),
                                               Column(
@@ -596,27 +574,27 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  FancyTextMFP(
+                                                  Obx(()=>FancyTextMFP(
                                                     isPer: true,
-                                                    number: 0.0,
+                                                    number: double.parse(controller.investedCoins[index].returns.value),
                                                     positivePrefix: "+",
                                                     negativePrefix: "-",
                                                     positiveSuffix: "%",
                                                     negativeSuffix: "%",
-                                                    positiveChange: 0 >= 0,
-                                                    positiveIntegerStyle: 0.0 == 0.0
+                                                    positiveChange: double.parse(controller.investedCoins[index].returns.value) >= 0,
+                                                    positiveIntegerStyle: double.parse(controller.investedCoins[index].returns.value) == 0.0
                                                         ? AppStyle.txtSoraSemiBold14BlueGray900
                                                         : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.green700),
-                                                    positiveDecimalStyle: 0.0 == 0.0
+                                                    positiveDecimalStyle: double.parse(controller.investedCoins[index].returns.value) == 0.0
                                                         ? AppStyle.txtSoraSemiBold12Bluegray900
                                                         : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.green700),
-                                                    negativeIntegerStyle: 0.0 == 0.0
+                                                    negativeIntegerStyle: double.parse(controller.investedCoins[index].returns.value) == 0.0
                                                         ? AppStyle.txtSoraSemiBold14BlueGray900
                                                         : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.red700),
-                                                    negativeDecimalStyle: 0.0 == 0.0
+                                                    negativeDecimalStyle:double.parse(controller.investedCoins[index].returns.value)== 0.0
                                                         ? AppStyle.txtSoraSemiBold12Bluegray900
                                                         : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.red700),
-                                                  ),
+                                                  ),),
                                                 ],
                                               )
                                             ],

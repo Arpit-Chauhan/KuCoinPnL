@@ -1,11 +1,13 @@
+import 'package:get/get.dart';
+
 class Coin {
   String symbol;
   String name;
   String image;
   String invested;
-  String current;
-  String pnl;
-  String returns;
+  RxString current;
+  RxString pnl;
+  RxString returns;
   String quantity;
   String buyAvg;
 
