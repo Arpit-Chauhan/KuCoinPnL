@@ -1,0 +1,35 @@
+class CryptoLogos {
+  static const bitcoin = 'https://res.coinpaper.com/coinpaper/bitcoin_btc_logo_e68b8dbb0c.svg';
+  static const ethereum = 'https://res.coinpaper.com/coinpaper/ethereum_eth_logo_b64861bd15.svg';
+  static const tetherUSDT = 'https://res.coinpaper.com/coinpaper/tether_usdt_logo_1c069eb107.svg';
+  static const dogecoin = 'https://res.coinpaper.com/coinpaper/dogecoin_doge_logo_477144b3df.svg';
+  static const cardano = 'https://res.coinpaper.com/coinpaper/cardano_ada_logo_12715cd3e9.svg';
+  static const polkadot = 'https://res.coinpaper.com/coinpaper/Polkadot_Token_Polkadot_Token_Pink_6531f20385.svg';
+  static const polygonMATIC = 'https://res.coinpaper.com/coinpaper/polygon_matic_logo_1631260aa7.svg';
+  static const binanceUSDT = 'https://res.coinpaper.com/coinpaper/binance_usd_busd_logo_ceb07e87ea.svg';
+  static const digitalBits = 'https://res.coinpaper.com/coinpaper/digitalbits_xdb_logo_c7ffb0e156.svg';
+  static const eCash = 'https://res.coinpaper.com/coinpaper/ecash_xec_logo_6fa9f62fa9.svg';
+  static const akropolis = 'https://res.coinpaper.com/coinpaper/akropolis_akro_logo_97c3c2729c.svg';
+  static const reserve = 'https://res.coinpaper.com/coinpaper/reserve_rsv_logo_a3c5d81702.svg';
+  static const pooCoin = 'https://res.coinpaper.com/coinpaper/poocoin_poocoin_logo_2fe897e42c.svg';
+  static const floki = 'https://res.coinpaper.com/coinpaper/floki_inu_floki_logo_50a4d913d7.svg';
+  static const fileCoin = 'https://res.coinpaper.com/coinpaper/filecoin_fil_logo_e2ffc28d7e.svg';
+  static const tron = 'https://res.coinpaper.com/coinpaper/tron_trx_logo_e6dacc1e1b.svg';
+  static const tetherGold = 'https://res.coinpaper.com/coinpaper/tether_gold_xaut_logo_d2fdf522dc.svg';
+  static const cronos = 'https://res.coinpaper.com/coinpaper/cronos_cro_logo_f0fb693fac.svg';
+  static const litecoin = 'https://res.coinpaper.com/coinpaper/litecoin_ltc_logo_55f53652c4.svg';
+  static const reserveRights = 'https://res.coinpaper.com/coinpaper/reserve_rights_rsr_logo_667ee0e1d3.svg';
+  static const shibaInu = 'https://res.coinpaper.com/coinpaper/shiba_inu_shib_logo_160f2381dd.svg';
+  static const cosmos = 'https://res.coinpaper.com/coinpaper/cosmos_atom_logo_d9a32edd54.svg';
+  static const chainlink = 'https://res.coinpaper.com/coinpaper/chainlink_link_logo_3469e3189d.svg';
+  static const kuCoin = 'https://res.coinpaper.com/coinpaper/kucoin_token_kcs_logo_d6a62ed529.svg';
+  static const shibaDoge = 'https://res.coinpaper.com/coinpaper/shibadoge_shibdoge_logo_1b81822e49.svg';
+  static const babyDoge = 'https://res.coinpaper.com/coinpaper/baby_doge_coin_babydoge_logo_d65ca13574.png';
+  static const solana = 'https://res.coinpaper.com/coinpaper/solana_sol_logo_28f7fb0af5.svg';
+  static const terraLuna = 'https://res.coinpaper.com/coinpaper/terra_logo_c41c2480ce.svg';
+  static const lunaClassic = 'https://res.coinpaper.com/coinpaper/LUNC_mcxlhu.png';
+  static const xen = 'https://s2.coinmarketcap.com/static/img/coins/200x200/22118.png';
+  static const dogelon = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqPnyHKiNg8uKq8YAiaQOvJR-StsHSrxovvQEaX8BYA&s';
+  static const cult = 'https://seeklogo.com/images/C/cult-dao-logo-A6ACEAA059-seeklogo.com.png';
+  static const pepe2 = 'https://coinando.com/static/assets/coins/pepe-2-0-logo.png?v=1';
+}

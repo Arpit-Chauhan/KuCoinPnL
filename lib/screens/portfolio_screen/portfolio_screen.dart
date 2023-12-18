@@ -7,6 +7,7 @@ import '../../theme/app_style.dart';
 import '../../utils/colorConstants.dart';
 import '../../utils/scaling.dart';
 import '../../widgets/fancyNumber.dart';
+import '../../widgets/shimmerContainer.dart';
 import 'controller/portfolio_controller.dart';
 
 class PortfolioScreen extends GetView<PortfolioController> {
@@ -139,19 +140,17 @@ class PortfolioScreen extends GetView<PortfolioController> {
                             SizedBox(
                               height: 5,
                             ),
-                            // (controller.holdingSummaryResponse.value.currentValue == null)
-                            //     ? ShimmerContainer(
-                            //         width: scale.getScaledWidth(85),
-                            //         height: scale.getScaledHeight(20),
-                            //       ):
-                            FancyText(
-                              number: (controller.totalCurrent),
-                              positiveChange: true,
-                              positiveIntegerStyle: AppStyle.txtSoraSemiBold16WhiteA700,
-                              positiveDecimalStyle: AppStyle.txtSoraSemiBold14WhiteA700,
-                              negativeIntegerStyle: AppStyle.txtSoraSemiBold16WhiteA700,
-                              negativeDecimalStyle: AppStyle.txtSoraSemiBold14WhiteA700,
-                              showRupeeIcon: true,
+                            Obx(
+                              () => (controller.totalCurrent.value == 0.0)
+                                  ? ShimmerContainer(
+                                      width: scale.getScaledWidth(85),
+                                      height: scale.getScaledHeight(20),
+                                    )
+                                  : Text(
+                                      '₹${controller.totalCurrent.value.toStringAsFixed(2)}',
+                                      style: AppStyle.txtSoraSemiBold16WhiteA700,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                             ),
                           ],
                         ),
@@ -165,19 +164,17 @@ class PortfolioScreen extends GetView<PortfolioController> {
                             SizedBox(
                               height: 5,
                             ),
-                            // (controller.holdingSummaryResponse.value.amountInvested == null)
-                            //     ? ShimmerContainer(
-                            //         width: scale.getScaledWidth(85),
-                            //         height: scale.getScaledHeight(20),
-                            //       ):
-                            FancyTextMFP(
-                              number: controller.totalInvested,
-                              positiveChange: true,
-                              positiveIntegerStyle: AppStyle.txtSoraSemiBold16WhiteA700,
-                              positiveDecimalStyle: AppStyle.txtSoraSemiBold14WhiteA700,
-                              negativeIntegerStyle: AppStyle.txtSoraSemiBold16WhiteA700,
-                              negativeDecimalStyle: AppStyle.txtSoraSemiBold14WhiteA700,
-                              showRupeeIcon: true,
+                            Obx(
+                              () => (controller.totalInvested.value == 0.0)
+                                  ? ShimmerContainer(
+                                      width: scale.getScaledWidth(85),
+                                      height: scale.getScaledHeight(20),
+                                    )
+                                  : Text(
+                                      '₹${controller.totalInvested.value.toStringAsFixed(2)}',
+                                      style: AppStyle.txtSoraSemiBold16WhiteA700,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                             ),
                           ],
                         )
@@ -207,29 +204,18 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                // (controller.holdingSummaryResponse.value.dayPl == null)
-                                //     ? ShimmerContainer(
-                                //         width: scale.getScaledWidth(75),
-                                //         height: scale.getScaledHeight(20),
-                                //       ):
-                                FancyTextMFP(
-                                  number: controller.totalPnL,
-                                  positivePrefix: controller.totalPnL == 0 ? "" : "+",
-                                  negativePrefix: "-",
-                                  positiveChange: controller.totalPnL >= 0,
-                                  positiveIntegerStyle: controller.totalPnL == 0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.green700),
-                                  positiveDecimalStyle: controller.totalPnL == 0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.green700),
-                                  negativeIntegerStyle: controller.totalPnL == 0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.red700),
-                                  negativeDecimalStyle: controller.totalPnL == 0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.red700),
-                                  showRupeeIcon: true,
+                                Obx(
+                                  () => (controller.totalPnL.value == 0.0)
+                                      ? ShimmerContainer(
+                                          width: scale.getScaledWidth(75),
+                                          height: scale.getScaledHeight(20),
+                                        )
+                                      : Text(
+                                          '${controller.totalPnL.value >= 0.00 ? "+₹" : "-₹"}${controller.totalPnL.value.abs().toStringAsFixed(2)}',
+                                          style: controller.totalPnL.value >= 0.00
+                                              ? AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.green700)
+                                              : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.red700),
+                                        ),
                                 ),
                               ],
                             ),
@@ -243,31 +229,18 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                // (controller.holdingSummaryResponse.value.totalPl == null)
-                                //     ? ShimmerContainer(
-                                //         width: scale.getScaledWidth(75),
-                                //         height: scale.getScaledHeight(20),
-                                //       ):
-                                FancyTextMFP(
-                                  isPer: true,
-                                  number:controller.totalReturns,
-                                  positivePrefix: controller.totalReturns== 0.0 ? "" : "+",
-                                  negativePrefix: "-",
-                                  positiveSuffix: "%",
-                                  negativeSuffix: "%",
-                                  positiveChange: controller.totalReturns>= 0.0,
-                                  positiveIntegerStyle: controller.totalReturns == 0.0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.green700),
-                                  positiveDecimalStyle: controller.totalReturns == 0.0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.green700),
-                                  negativeIntegerStyle: controller.totalReturns== 0.0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.red700),
-                                  negativeDecimalStyle:controller.totalReturns== 0.0
-                                      ? AppStyle.txtSoraSemiBold16WhiteA700
-                                      : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.red700),
+                                Obx(
+                                  () => (controller.totalReturns.value == 0.0)
+                                      ? ShimmerContainer(
+                                          width: scale.getScaledWidth(75),
+                                          height: scale.getScaledHeight(20),
+                                        )
+                                      : Text(
+                                          '${controller.totalReturns.value >= 0.00 ? "+" : "-"}${controller.totalReturns.value.abs().toStringAsFixed(2)}%',
+                                          style: controller.totalReturns.value >= 0.00
+                                              ? AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.green700)
+                                              : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.red700),
+                                        ),
                                 ),
                               ],
                             )
@@ -440,7 +413,7 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             CircleAvatar(
-                                              backgroundImage: NetworkImage(''),
+                                              backgroundImage: NetworkImage(controller.investedCoins[index].image),
                                               radius: 18, // Adjust the size as needed
                                             ),
                                             SizedBox(width: 15),
@@ -462,9 +435,9 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                             ),
                                             SizedBox(width: scale.getScaledWidth(5.0)),
                                             Padding(
-                                              padding:scale.getPadding(right: 10,top: 7.5),
+                                              padding: scale.getPadding(right: 10, top: 7.5),
                                               child: Text(
-                                                'Qty. : ${controller.investedCoins[index].quantity}', 
+                                                'Qty. : ${controller.investedCoins[index].quantity}',
                                                 style: AppStyle.txtSoraRegular14.copyWith(color: LightTheme.gray600),
                                               ),
                                             ),
@@ -506,18 +479,18 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                               ),
                                             ])),
                                             Container(
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
+                                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                                               Text(
                                                 'Current: ',
                                                 style: AppStyle.txtSoraRegular12.copyWith(color: LightTheme.gray600),
                                               ),
-                                              Obx(()=>Text(
-                                                '₹${controller.investedCoins[index].current.value}',
-                                                style: AppStyle.txtSoraSemiBold14Bluegray900,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),),
+                                              Obx(
+                                                () => Text(
+                                                  '₹${double.parse(controller.investedCoins[index].current.value).toStringAsFixed(2)}',
+                                                  style: AppStyle.txtSoraSemiBold14Bluegray900,
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                              ),
                                             ])),
                                           ],
                                         ),
@@ -543,25 +516,14 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Obx(()=>FancyTextMFP(
-                                                    number: double.parse(controller.investedCoins[index].pnl.value),
-                                                    positivePrefix: "+",
-                                                    negativePrefix: "",
-                                                    positiveChange: double.parse(controller.investedCoins[index].pnl.value)>= 0,
-                                                    positiveIntegerStyle: double.parse(controller.investedCoins[index].pnl.value) == 0
-                                                        ? AppStyle.txtSoraSemiBold14BlueGray900
-                                                        : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.green700),
-                                                    positiveDecimalStyle: double.parse(controller.investedCoins[index].pnl.value)== 0
-                                                        ? AppStyle.txtSoraSemiBold12Bluegray900
-                                                        : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.green700),
-                                                    negativeIntegerStyle: double.parse(controller.investedCoins[index].pnl.value)== 0
-                                                        ? AppStyle.txtSoraSemiBold14BlueGray900
-                                                        : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.red700),
-                                                    negativeDecimalStyle: double.parse(controller.investedCoins[index].pnl.value)== 0
-                                                        ? AppStyle.txtSoraSemiBold12Bluegray900
-                                                        : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.red700),
-                                                    showRupeeIcon: true,
-                                                  ),),
+                                                  Obx(
+                                                    () => Text(
+                                                      '${double.parse(controller.investedCoins[index].pnl.value) >= 0.00 ? "+₹" : "-₹"}${double.parse(controller.investedCoins[index].pnl.value).abs().toStringAsFixed(2)}',
+                                                      style: double.parse(controller.investedCoins[index].pnl.value) >= 0.00
+                                                          ? AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.green700)
+                                                          : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.red700),
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                               Column(
@@ -574,27 +536,14 @@ class PortfolioScreen extends GetView<PortfolioController> {
                                                   SizedBox(
                                                     height: 5,
                                                   ),
-                                                  Obx(()=>FancyTextMFP(
-                                                    isPer: true,
-                                                    number: double.parse(controller.investedCoins[index].returns.value),
-                                                    positivePrefix: "+",
-                                                    negativePrefix: "-",
-                                                    positiveSuffix: "%",
-                                                    negativeSuffix: "%",
-                                                    positiveChange: double.parse(controller.investedCoins[index].returns.value) >= 0,
-                                                    positiveIntegerStyle: double.parse(controller.investedCoins[index].returns.value) == 0.0
-                                                        ? AppStyle.txtSoraSemiBold14BlueGray900
-                                                        : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.green700),
-                                                    positiveDecimalStyle: double.parse(controller.investedCoins[index].returns.value) == 0.0
-                                                        ? AppStyle.txtSoraSemiBold12Bluegray900
-                                                        : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.green700),
-                                                    negativeIntegerStyle: double.parse(controller.investedCoins[index].returns.value) == 0.0
-                                                        ? AppStyle.txtSoraSemiBold14BlueGray900
-                                                        : AppStyle.txtSoraSemiBold14WhiteA700.copyWith(color: LightTheme.red700),
-                                                    negativeDecimalStyle:double.parse(controller.investedCoins[index].returns.value)== 0.0
-                                                        ? AppStyle.txtSoraSemiBold12Bluegray900
-                                                        : AppStyle.txtSoraSemiBold12WhiteA700.copyWith(color: LightTheme.red700),
-                                                  ),),
+                                                  Obx(
+                                                    () => Text(
+                                                      '${double.parse(controller.investedCoins[index].returns.value) >= 0.00 ? "+" : "-"}${double.parse(controller.investedCoins[index].returns.value).abs().toStringAsFixed(2)}%',
+                                                      style: double.parse(controller.investedCoins[index].returns.value) >= 0.00
+                                                          ? AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.green700)
+                                                          : AppStyle.txtSoraSemiBold16WhiteA700.copyWith(color: LightTheme.red700),
+                                                    ),
+                                                  ),
                                                 ],
                                               )
                                             ],

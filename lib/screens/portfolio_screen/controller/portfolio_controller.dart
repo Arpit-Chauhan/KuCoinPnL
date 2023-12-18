@@ -9,6 +9,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:kucoinpnl/screens/portfolio_screen/models/tokenRes.dart';
+import 'package:kucoinpnl/utils/cryptoLogos.dart';
 import 'package:kucoinpnl/utils/socketManager.dart';
 
 import '../models/coin_model.dart';
@@ -23,19 +24,12 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
   TextEditingController searchController = TextEditingController();
   ScrollController scrollController = ScrollController();
 
-  RxInt tabIndex = 0.obs;
-
-  // List<SelectionPopupModel> sortByValue = [
-  //   SelectionPopupModel(title: "High to Low", value: "desc", isSelected: true),
-  //   SelectionPopupModel(title: "Low to High", value: "asc"),
-  // ];
-
   late RxList<Coin> investedCoins;
 
-  double totalCurrent = 0.0;
-  double totalInvested = 0.0;
-  double totalPnL = 0.0;
-  double totalReturns = 0.0;
+  RxDouble totalCurrent = 0.0.obs;
+  RxDouble totalInvested = 0.0.obs;
+  RxDouble totalPnL = 0.0.obs;
+  RxDouble totalReturns = 0.0.obs;
 
   // var apiKey = dotenv.env['apiKey'];
   // var apiSecret = dotenv.env['apiSecret'];
@@ -52,7 +46,7 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
           symbol: 'LUNC-USDT',
           name: "LUNA CLASSIC",
           invested: "166.079999879",
-          image: "",
+          image: CryptoLogos.lunaClassic,
           current: "0.0".obs,
           pnl: "0.0".obs,
           returns: "0.0".obs,
@@ -62,7 +56,7 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
           symbol: 'XEN-USDT',
           name: "XEN",
           invested: "157.775999999",
-          image: "",
+          image: CryptoLogos.xen,
           current: "0.0".obs,
           pnl: "0.0".obs,
           returns: "0.0".obs,
@@ -72,7 +66,7 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
           symbol: 'ELON-USDT',
           name: "DOGELON",
           invested: "90.5135548643",
-          image: "",
+          image: CryptoLogos.dogelon,
           current: "0.0".obs,
           pnl: "0.0".obs,
           returns: "0.0".obs,
@@ -82,7 +76,7 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
           symbol: 'CULT-USDT',
           name: "CULT",
           invested: "91.8355613927",
-          image: "",
+          image: CryptoLogos.cult,
           current: "0.0".obs,
           pnl: "0.0".obs,
           returns: "0.0".obs,
@@ -92,7 +86,7 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
           symbol: 'PEPE2-USDT',
           name: "PEPE2",
           invested: "83.1074563788",
-          image: "",
+          image: CryptoLogos.pepe2,
           current: "0.0".obs,
           pnl: "0.0".obs,
           returns: "0.0".obs,
@@ -100,9 +94,9 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
           buyAvg: "0.00000301435"),
       Coin(
           symbol: 'BABYDOGE-USDT',
-          name: "BABYDODGE",
+          name: "BABYDOGE",
           invested: "99.648",
-          image: "",
+          image: CryptoLogos.babyDoge,
           current: "0.0".obs,
           pnl: "0.0".obs,
           returns: "0.0".obs,
@@ -115,18 +109,40 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
   void onReady() async {
     super.onReady();
     refreshKey.currentState?.show();
-    totalCurrent = investedCoins
-        .map((coin) => double.tryParse(coin.current.value) ?? 0.0)
-        .fold(0, (previousValue, currentValue) => previousValue + currentValue);
-
-    totalInvested = investedCoins
-        .map((coin) => (double.tryParse(coin.buyAvg) ?? 0.0) * (double.tryParse(coin.quantity) ?? 0.0))
+    double sum = investedCoins
+        .map((coin) => (double.tryParse(coin.buyAvg) ?? 0.0) * (double.tryParse(coin.quantity.replaceAll(',', '')) ?? 0.0))
         .fold(0, (previousValue, investedValue) => previousValue + investedValue);
+    totalInvested.value = sum;
 
-    totalPnL = investedCoins.map((coin) => double.tryParse(coin.pnl.value) ?? 0.0).fold(0, (previousValue, pnlValue) => previousValue + pnlValue);
+    for (var coin in investedCoins) {
+      ever(coin.current, (_) {
+        updateTotalCurrent();
+      });
+    }
+    updateTotalCurrent();
 
-    totalReturns =
-        investedCoins.map((coin) => double.tryParse(coin.returns.value) ?? 0.0).fold(0, (previousValue, returnValue) => previousValue + returnValue);
+    for (var coin in investedCoins) {
+      ever(coin.pnl, (_) {
+        updateTotalPnL();
+      });
+    }
+    updateTotalPnL();
+  }
+
+  void updateTotalCurrent() {
+    double sum = investedCoins
+        .map((coin) => double.tryParse(coin.current.value) ?? 0.0)
+        .fold(0.0, (previousValue, currentValue) => previousValue + currentValue);
+
+    totalCurrent.value = sum;
+    // print('TOTAL CURRENT ${totalCurrent.value}');
+  }
+
+  void updateTotalPnL() {
+    double sum = investedCoins.map((coin) => double.tryParse(coin.pnl.value) ?? 0.0).fold(0.0, (previousValue, pnlValue) => previousValue + pnlValue);
+    totalPnL.value = sum;
+    totalReturns.value = (totalPnL.value / totalInvested.value) * 100;
+    // print('TOTAL P&L ${totalPnL.value}');
   }
 
   @override
@@ -148,26 +164,26 @@ class PortfolioController extends GetxController with GetTickerProviderStateMixi
       socketManager.subscribeToTopics(
         ['/market/ticker:LUNC-USDT', 'XEN-USDT', 'ELON-USDT', 'CULT-USDT', 'PEPE2-USDT', 'BABYDOGE-USDT', 'BTC-USDT'],
       );
-      // Future.delayed(Duration(seconds: 30)).then((value) => socketManager.onDone());
+      // Future.delayed(Duration(seconds: 90)).then((value) => socketManager.onDone());
     } else {
       print('Failed to obtain a new token: ${response.body}');
     }
   }
 
   void updateCoinPrice(String symbol, String newPrice) async {
-    print('$symbol');
+    // print('$symbol');
     String inrPrice = await convert();
     double newPriceValue = double.parse(newPrice);
     double inrPriceValue = double.parse(inrPrice);
 
     double multipliedValue = newPriceValue * inrPriceValue;
-    String value = multipliedValue.toString();
+    String inrValue = multipliedValue.toString();
     final Coin? coinToUpdate = investedCoins.firstWhereOrNull((coin) => coin.symbol == symbol);
     if (coinToUpdate != null) {
+      double priceQuantity = double.parse(inrValue) * double.parse(coinToUpdate.quantity.replaceAll(',', ''));
+      String value = priceQuantity.toString();
       coinToUpdate.current.value = value;
-      coinToUpdate.pnl.value =
-          ((double.parse(coinToUpdate.current.value) * double.parse(coinToUpdate.quantity.replaceAll(',', ''))) - double.parse(coinToUpdate.invested))
-              .toString();
+      coinToUpdate.pnl.value = ((double.parse(coinToUpdate.current.value)) - double.parse(coinToUpdate.invested)).toString();
       // print('P&L: ${coinToUpdate.pnl.value}');
       coinToUpdate.returns.value = ((double.parse(coinToUpdate.pnl.value) / double.parse(coinToUpdate.invested)) * 100).toString();
       //print('Returns: ${coinToUpdate.returns.value}');
