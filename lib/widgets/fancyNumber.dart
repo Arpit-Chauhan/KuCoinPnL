@@ -44,8 +44,10 @@ class FancyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String formattedNumber = NumberFormat.decimalPattern().format(number);
+
     int integer = number.toInt();
-    String ltpFractions = mfpNAV == true ? number.toStringAsFixed(3).split('.')[1] : number.toStringAsFixed(2).split('.')[1];
+     String ltpFractions = number.toString().split('.').length > 1 ? number.toString().split('.')[1] : "";
     if (number.isNegative && integer == 0) {
       if (negativePrefix != null) {
         negativePrefix = '${negativePrefix!}-';
@@ -74,9 +76,7 @@ class FancyText extends StatelessWidget {
                     : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
           ),
           TextSpan(
-            text: positiveChange
-                ? (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer)
-                : (numberFormat ?? NumberFormat.decimalPattern('hi')).format(integer),
+            text: formattedNumber,
             style: positiveChange
                 ? positiveIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()])
                 : negativeIntegerStyle.copyWith(fontFeatures: [FontFeature.tabularFigures()]),
@@ -133,7 +133,7 @@ class FancyTextTxn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int integer = number.toInt();
-    String ltpFractions = mfpNAV == true ? number.toStringAsFixed(3).split('.')[1] : number.toStringAsFixed(2).split('.')[1];
+    String ltpFractions = number.toString() ;
     if (number.isNegative && integer == 0) {
       if (negativePrefix != null) {
         negativePrefix = '${negativePrefix!}-';

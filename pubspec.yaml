@@ -38,11 +38,12 @@ dependencies:
   themed: ^5.0.0
   get: ^4.6.6
   connectivity_plus: ^5.0.2
-  intl: ^0.19.0
+  intl: ^0.18.1
   shimmer: ^3.0.0
   web_socket_channel: ^2.4.0
   http: ^1.1.2
   flutter_dotenv: ^5.1.0
+  currency_converter: ^0.0.5
 
 dev_dependencies:
   flutter_test:

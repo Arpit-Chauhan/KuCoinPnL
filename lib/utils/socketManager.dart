@@ -7,6 +7,7 @@ class SocketManager {
   late IOWebSocketChannel _channel;
   late Timer _pingTimer;
   late String _connectId;
+  Function(String, String)? priceUpdateCallback; // Callback function
 
   void connect(String token) {
     final endpoint = 'wss://ws-api-spot.kucoin.com/';
@@ -26,7 +27,7 @@ class SocketManager {
   void _sendPing() {
     final pingMessage = json.encode({'id': _connectId, 'type': 'ping'});
     _channel.sink.add(pingMessage);
-    print('Sent ping message with id: $_connectId');
+    // print('Sent ping message with id: $_connectId');
   }
 
   void _onData(dynamic message) {
@@ -34,23 +35,36 @@ class SocketManager {
     final type = decodedMessage['type'];
 
     if (type == 'pong') {
-      print('Received pong message with id: ${decodedMessage['id']}');
+      // print('Received pong message with id: ${decodedMessage['id']}');
     } else if (type == 'ping') {
       _sendPong(decodedMessage['id']);
     } else if (type == 'welcome') {
-      print('Received welcome message with id: ${decodedMessage['id']}');
+      // print('Received welcome message with id: ${decodedMessage['id']}');
       // Start the ping mechanism after receiving the welcome message
       startPing(decodedMessage['id'], 10); // Change 10 to your desired ping interval
     } else if (type == 'message') {
-      print('Received subscribed message with data: ${decodedMessage['subject']}');
-      print('Received subscribed message with price: ${decodedMessage['data']['price']}');
+      // print('Received subscribed message with data: ${decodedMessage['topic']}');
+      // print('Received subscribed message with price: ${decodedMessage['data']['price']}');
+      String? symbol = _extractSymbolFromTopic(decodedMessage['topic']);
+      if (priceUpdateCallback != null) {
+        priceUpdateCallback!(symbol??'', decodedMessage['data']['price']);
+      }
     }
+  }
+
+  String? _extractSymbolFromTopic(String topic) {
+    RegExp regExp = RegExp(r'/market/ticker:(.*)'); // Define regex pattern
+    Match? match = regExp.firstMatch(topic);
+    if (match != null && match.groupCount > 0) {
+      return match.group(1); // Extract the symbol after 'ticker:'
+    }
+    return null;
   }
 
   void _sendPong(String id) {
     final pongMessage = json.encode({'id': id, 'type': 'pong'});
     _channel.sink.add(pongMessage);
-    print('Sent pong message with id: $id');
+    // print('Sent pong message with id: $id');
   }
 
   void onDone() {
@@ -74,6 +88,6 @@ class SocketManager {
 
     final message = json.encode(subscribeMessage);
     _channel.sink.add(message);
-    print('Subscribed to topics: $topics');
+    // print('Subscribed to topics: $topics');
   }
 }
