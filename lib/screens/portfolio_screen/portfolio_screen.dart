@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:kucoinpnl/routes/app_routes.dart';
 import '../../theme/app_decoration.dart';
 import '../../theme/app_style.dart';
 import '../../utils/colorConstants.dart';
@@ -37,6 +38,26 @@ class PortfolioScreen extends GetView<PortfolioController> {
                         pageHeader(),
                         SizedBox(height: scale.getScaledHeight(8)),
                         holdingsTab(context),
+                        Padding(
+                          padding: scale.getPadding(bottom: 15),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.toNamed(AppRoutes.addCoinScreen);
+                            },
+                            style: ElevatedButton.styleFrom(backgroundColor: LightTheme.blueGradient),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.add,
+                                  color: LightTheme.whiteSmoke,
+                                ),
+                                SizedBox(width: scale.getScaledWidth(3)),
+                                Text('ADD COIN', style: AppStyle.txtSoraSemiBold14WhiteA700),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
